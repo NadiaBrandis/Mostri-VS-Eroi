@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MostriVSEroi.Modelli\MostriVSEroi.Modelli.csproj" />
+    <ProjectReference Include="..\MostriVSEroi.SchermataServices\MostriVSEroi.SchermataServices.csproj" />
+    <ProjectReference Include="..\MostriVSEroi.Services\MostriVSEroi.Services.csproj" />
+  </ItemGroup>
+
+</Project>
