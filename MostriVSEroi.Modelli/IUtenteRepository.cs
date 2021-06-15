@@ -6,6 +6,6 @@ namespace MostriVSEroi.Modelli
 {
     public interface IUtenteRepository
     {
-        public Utente GetUser(Utente utente);
+       
      } 
 }

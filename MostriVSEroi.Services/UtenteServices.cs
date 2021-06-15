@@ -8,9 +8,12 @@ namespace MostriVSEroi.Services
     public class UtenteServices
     {
         static UtenteMokRepository umr = new UtenteMokRepository();
-        public static Utente VerificaAutenticazione( Utente utente)
+        
+        
+        public static List<Utente> Utenti()
         {
-            return umr.GetUser(utente);
+            List<Utente> utenti = UtenteMokRepository.GetUtenti();
+            return utenti;
         }
 
         public static void CreaNuovoUtente(Utente utente, List<Utente> utenti)
@@ -19,11 +22,15 @@ namespace MostriVSEroi.Services
             {
                 if (item.Username != utente.Username)
                 {
-                    utenti.Add(item);
+                    //utenti.Add(item);
+                    UtenteMokRepository.InserisciUtente(utente.Username, utente.Password);
+                    break;
                 }
                 else
                 {
+                    
                     Console.WriteLine("Username già esistente, inseriscine un altro!!");
+                    //RegistratiView.Registrati();
                 }
             }
         }

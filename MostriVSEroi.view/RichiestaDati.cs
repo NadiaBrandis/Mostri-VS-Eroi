@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MostriVSEroi.view
 {
-    class RichiestaDati
+    public class RichiestaDati
     {
         internal static Utente InserisciUsernamePassword()
         {
@@ -18,12 +18,7 @@ namespace MostriVSEroi.view
             
         }
 
-        internal static List<Utente> ListaUtenti()
-        {
-            List<Utente> utenti = new List<Utente>();
-            return utenti;
-        }
-
+       
         internal static Eroe InserisciIdEroe(List<Eroe> eroi)
         {
             Eroe eroeDaEliminare = new Eroe();

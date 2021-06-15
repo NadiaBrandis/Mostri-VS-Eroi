@@ -1,4 +1,5 @@
 ﻿using MostriVSEroi.Modelli;
+using MostriVSEroi.mokRepository;
 using MostriVSEroi.Services;
 using System;
 using System.Collections.Generic;
@@ -6,13 +7,14 @@ using System.Text;
 
 namespace MostriVSEroi.view
 {
-    class RegistratiView
+    public class RegistratiView
     {
-        internal static void Registrati()
+        public static void Registrati()
         {
             Utente utente = RichiestaDati.InserisciUsernamePassword();
-            List<Utente> utenti = RichiestaDati.ListaUtenti();
+            List<Utente> utenti = UtenteMokRepository.GetUtenti();
             UtenteServices.CreaNuovoUtente(utente, utenti);
+            Menu.MenuNonAdmin(utente);
         }
     }
 }

@@ -6,4 +6,12 @@
     <RootNamespace>Mostri_VS_Eroi</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MostriVSEroi.view\MostriVSEroi.view.csproj" />
+  </ItemGroup>
+
 </Project>
