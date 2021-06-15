@@ -14,5 +14,9 @@ namespace MostriVSEroi.Modelli
             NomeArma = arma;
             PuntiDanno = danno;
         }
+        public ArmaEroe()
+        {
+
+        }
     }
 }

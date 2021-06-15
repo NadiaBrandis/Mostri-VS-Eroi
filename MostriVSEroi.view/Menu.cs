@@ -23,6 +23,7 @@ namespace MostriVSEroi.view
                         AccediView.Accedi();
                         break;
                     case "2":
+                        RegistratiView.Registrati();
                         break;
                     case "0":
                         Console.WriteLine("Alla prossima partita!!");
@@ -54,8 +55,10 @@ namespace MostriVSEroi.view
                         GiocaVieW.Gioca(utente);
                         break;
                     case "2":
+                        CreaEroeView.CreaEroe(utente);
                         break;
                     case "3":
+                        EliminaEroeView.EliminaEroe(utente);
                         break;
                     case "0":
                         MenuPrincipale();

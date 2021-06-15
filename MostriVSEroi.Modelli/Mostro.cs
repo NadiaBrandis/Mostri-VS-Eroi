@@ -9,11 +9,18 @@ namespace MostriVSEroi.Modelli
         public string NomeMostro { get; set; }
         public string CategoriaMostro { get; set; }
         public ArmaMostro Arma { get; set; }
-        public Mostro(string nome,string categoria,ArmaMostro arma)
+        public int PuntiVita { get; set; }
+        public int Livello { get; set; }
+        public Mostro(string nome,string categoria,ArmaMostro arma, int puntiVita)
         {
             NomeMostro = nome;
             CategoriaMostro = categoria;
             Arma = arma;
+            PuntiVita=puntiVita;
+        }
+        public Mostro()
+        {
+
         }
     }
 }

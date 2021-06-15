@@ -1,5 +1,6 @@
 ﻿using MostriVSEroi.Modelli;
 using System;
+using System.Collections.Generic;
 
 namespace MostriVSEroi.mokRepository
 {
@@ -9,6 +10,10 @@ namespace MostriVSEroi.mokRepository
         {
            // utente.IsAuthenticated = true;
             return utente;
+        }
+        public List<Utente> ListaUtenti(List<Utente> utenti)
+        {
+            return utenti;
         }
     }
 }

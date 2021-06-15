@@ -5,15 +5,12 @@ using System.Text;
 
 namespace MostriVSEroi.mokRepository
 {
-    public static class EroiMockRepository
+    public  class EroiMockRepository
     {
-        public static void StampaListaEroi()
+       
+        public List<Eroe> ListaEroi(List<Eroe> eroi)
         {
-            List<Eroe> Eroi = new List<Eroe>();
-            foreach(var item in Eroi)
-            {
-                Console.WriteLine(item);
-            }
+            return eroi;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using MostriVSEroi.Modelli;
 using MostriVSEroi.mokRepository;
+using MostriVSEroi.Services;
 using System;
+using System.Collections.Generic;
 
 namespace MostriVSEroi.view
 {
@@ -8,15 +10,21 @@ namespace MostriVSEroi.view
     {
         internal static void Gioca(Utente utente)
         {
-            EroiMockRepository.StampaListaEroi();
+            //stampa tutti gli eroi
+            List<Eroe> eroi = RichiestaDati.ListaEroi();
+            List<Mostro> mostri = RichiestaDati.ListaMostri();
+            EroeServices.GetEroi(eroi);
             //scelta eroe
-            Console.Write("Inserisci Id del Eroe che vuoi far combattere:");
-            int id = int.Parse(Console.ReadLine());
+            int id=RichiestaDati.SceltaEroe();
+            Eroe eroeScelto=EroeServices.GetEroe(id,eroi);
             //scelta mostro
-            MostriMockRepository.SceltaMostro();
-           //partita
-           //calcolo punteggio e livello
-           //giocare ancora
+            Mostro mostroScelto = MostroServices.GetMostro(mostri);
+            //partita
+            int punteggio=PartitaServices.GiocaPartita(eroeScelto, mostroScelto);
+            //calcolo punteggio e livello
+           eroeScelto.Livello=PartitaServices.CalcoloPunteggio(eroeScelto,mostroScelto);
+            //giocare ancora
+            GiocaVieW.Gioca(utente);
         }
     }
 }
