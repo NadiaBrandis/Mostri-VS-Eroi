@@ -18,6 +18,12 @@ namespace MostriVSEroi.Modelli
             Arma = arma;
             PuntiVita=puntiVita;
         }
+        public Mostro(string nome,ArmaMostro arma ,int puntiVita)
+        {
+            NomeMostro = nome;
+            Arma = arma;
+            PuntiVita = puntiVita;
+        }
         public Mostro()
         {
 

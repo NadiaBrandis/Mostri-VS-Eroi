@@ -8,20 +8,20 @@ namespace MostriVSEroi.Services
 {
     public static class EroeServices
     {
-        static EroiMockRepository emr = new EroiMockRepository();
-        public static List<Eroe> GetEroi(List<Eroe> eroi)
+        static EroiDbRepository emr = new EroiDbRepository();
+        public static List<Eroe> GetEroi()
         {
-            
+            List<Eroe> eroi = EroiDbRepository.GetEroi();
             int count = 1;
             foreach (var item in eroi)
             {
 
-                Console.WriteLine($"[{count}]-Nome Eroe:{item.NomeEroe} -Categoria:{item.Categoria}" +
-                    $"-Arma:{item.Arma} -Punti Vita{item.PuntiVita}");
+                Console.WriteLine($"[{item.idEroe}]-Nome Eroe:{item.NomeEroe} -Categoria:{item.Categoria}" +
+                    $"-Arma:{item.Arma.NomeArma} -Punti Danno: {item.Arma.PuntiDanno}");
                 count++;
                 
             }
-            return emr.ListaEroi(eroi);
+            return eroi;
         }
 
         public static Eroe GetEroe(int id ,List<Eroe>eroi)
@@ -38,6 +38,11 @@ namespace MostriVSEroi.Services
             }
             return eroe;
 
+        }
+
+        public static void GetPuntiVitaEroe(Utente utente, List<Eroe> eroi)
+        {
+            throw new NotImplementedException();
         }
     }
 }

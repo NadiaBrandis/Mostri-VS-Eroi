@@ -7,12 +7,12 @@ namespace MostriVSEroi.Services
 {
     public class UtenteServices
     {
-        static UtenteMokRepository umr = new UtenteMokRepository();
+        static UtenteDbRepository umr = new UtenteDbRepository();
         
         
         public static List<Utente> Utenti()
         {
-            List<Utente> utenti = UtenteMokRepository.GetUtenti();
+            List<Utente> utenti = UtenteDbRepository.GetUtenti();
             return utenti;
         }
 
@@ -23,7 +23,7 @@ namespace MostriVSEroi.Services
                 if (item.Username != utente.Username)
                 {
                     //utenti.Add(item);
-                    UtenteMokRepository.InserisciUtente(utente.Username, utente.Password);
+                    UtenteDbRepository.InserisciUtente(utente.Username, utente.Password);
                     break;
                 }
                 else

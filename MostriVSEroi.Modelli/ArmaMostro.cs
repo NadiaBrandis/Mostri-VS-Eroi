@@ -8,5 +8,15 @@ namespace MostriVSEroi.Modelli
     {
         public string NomeArma { get; set; }
         public int PuntiDanno { get; set; }
+        public ArmaMostro(string nome,int danno)
+        {
+            NomeArma = nome;
+            PuntiDanno = danno;
+
+        }
+        public ArmaMostro()
+        {
+
+        }
     }
 }

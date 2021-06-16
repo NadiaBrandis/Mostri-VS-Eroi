@@ -21,14 +21,7 @@ namespace MostriVSEroi.view
                 {
                     Menu.MenuNonAdmin(utente);
                 }
-                    //if (utente.IsAuthenticated && utente.IsAdmin)
-                    //{
-                    //    //menu admin
-                    //}
-                    //else if (utente.IsAuthenticated && utente.IsAdmin)
-                    //{
-                    //    Menu.MenuNonAdmin(utente);
-                    //}
+                    
                     else
                     {
                         Console.WriteLine("Devi prima registrarti");

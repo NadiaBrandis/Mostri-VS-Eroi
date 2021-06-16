@@ -33,11 +33,12 @@ namespace MostriVSEroi.view
             {
                 if (item.idEroe == id)
                 {
+                    
                     string nomeEroe = item.NomeEroe;
                     string categoria = item.Categoria;
                     string arma = item.Arma.NomeArma;
                     int puntiDanno = item.Arma.PuntiDanno;
-                    return EroeSchermataServices.GetEroe(nomeEroe, categoria, arma, puntiDanno);
+                    return EroeSchermataServices.GetEroe(id, nomeEroe, categoria, arma, puntiDanno);
                 }
                 
             }
@@ -70,7 +71,8 @@ namespace MostriVSEroi.view
         internal static Eroe InserisciDatiEroe(List<Eroe> eroi)
         {
             Eroe eroeDaCreare = new Eroe();
-
+            Console.WriteLine("id Eroe");
+            int id = int.Parse(Console.ReadLine());
             Console.Write("Nome del Eroe: ");
             string nome = Console.ReadLine();
             foreach (var item in eroi)
@@ -91,7 +93,7 @@ namespace MostriVSEroi.view
             int puntiDanno = arma.PuntiDanno;
             nomeArma = arma.NomeArma;
 
-            return EroeSchermataServices.GetEroe(nome, categoria, nomeArma,puntiDanno);
+            return EroeSchermataServices.GetEroe(id,nome, categoria, nomeArma,puntiDanno);
 
         }
 

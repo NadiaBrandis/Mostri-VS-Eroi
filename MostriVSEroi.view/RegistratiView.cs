@@ -12,7 +12,7 @@ namespace MostriVSEroi.view
         public static void Registrati()
         {
             Utente utente = RichiestaDati.InserisciUsernamePassword();
-            List<Utente> utenti = UtenteMokRepository.GetUtenti();
+            List<Utente> utenti = UtenteDbRepository.GetUtenti();
             UtenteServices.CreaNuovoUtente(utente, utenti);
             Menu.MenuNonAdmin(utente);
         }

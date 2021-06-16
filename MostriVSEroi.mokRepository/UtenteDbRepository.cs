@@ -5,11 +5,11 @@ using System.Data.SqlClient;
 
 namespace MostriVSEroi.mokRepository
 {
-    public class UtenteMokRepository : IUtenteRepository
+    public class UtenteDbRepository : IUtenteRepository
     {
         
         const string connectionString = @"Data Source= (localdb)\MSSQLLocalDB;" +
-                                        "Initial Catalog = MostriVSEroi;" + "integrated Security=true;";
+                                        "Initial Catalog = MostriVSEroi1;" + "integrated Security=true;";
 
         public static List<Utente> GetUtenti()
         {
@@ -23,18 +23,20 @@ namespace MostriVSEroi.mokRepository
                 Connection = connection,
 
                 CommandType = System.Data.CommandType.Text,
-
-                CommandText = "select * from dbo.Utenti"
+                
+                CommandText = "select * from dbo.VistaUtentiCompleta"
             };
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                var id = reader[0];
+                var id = (int)reader[0];
                 var username = reader[1];
                 var password = reader[2];
+                var livello = (int)reader[3];
+                var punti =(int) reader[4];
 
 
-                Utente utente = new Utente((string)username, (string)password);
+                Utente utente = new Utente(id,(string)username, (string)password,livello,punti);
                 utenti.Add(utente);
 
             }
@@ -59,7 +61,7 @@ namespace MostriVSEroi.mokRepository
                 connection.Close();
             }
         }
-    }
+    } 
 
     }
 

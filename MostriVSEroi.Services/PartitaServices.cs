@@ -9,41 +9,46 @@ namespace MostriVSEroi.Services
     {
         public static int GiocaPartita(Eroe eroeScelto, Mostro mostroScelto)
         {
+            //i punti vita del eroe in realtà sono quelli del utente
             int nuoviPuntiVitaMostro;
             int nuoviPuntiVitaEroe;
-            Console.WriteLine("Vuoi Attaccare o Fuggire?");
-            Console.WriteLine("1. Attacco");
-            Console.WriteLine("2. Fuga");
-            string scelta = Console.ReadLine();
-            int puntiVitaMostro = mostroScelto.PuntiVita;
-            int puntiVitaEroe = eroeScelto.PuntiVita;
-            switch(scelta)
-            {
-                case "1":
-                    do
-                    {
-                        nuoviPuntiVitaMostro = ConteggioPuntiMostro(eroeScelto, mostroScelto);//mostro-eroe
-                        nuoviPuntiVitaEroe = ConteggioPuntiEroe(puntiVitaEroe, mostroScelto);//eroe-mostro
+            string scelta;
+            int puntiTotali;
+          
+                Console.WriteLine("Vuoi Attaccare o Fuggire?");
+                Console.WriteLine("1. Attacco");
+                Console.WriteLine("2. Fuga");
+               scelta = Console.ReadLine();
 
-                    } while (nuoviPuntiVitaEroe <= 0 || nuoviPuntiVitaMostro <=0);
-                    if(nuoviPuntiVitaEroe <= 0 && nuoviPuntiVitaMostro >nuoviPuntiVitaEroe)
-                    {
+                switch (scelta)
+                {
+                    case "1":
+                        do
+                        {
+                            nuoviPuntiVitaMostro = ConteggioPuntiMostro(eroeScelto, mostroScelto);//mostro-eroe
+                            nuoviPuntiVitaEroe = ConteggioPuntiEroe(eroeScelto, mostroScelto);//eroe-mostro
+                        puntiTotali = nuoviPuntiVitaEroe - nuoviPuntiVitaMostro;
+                        Console.WriteLine(puntiTotali);
+                        } while (puntiTotali > 0);
+                        if (nuoviPuntiVitaEroe <= 0 && nuoviPuntiVitaMostro > nuoviPuntiVitaEroe)
+                        {
 
-                        Console.WriteLine("HAI PERSO!!");
-                    }
-                    else if(nuoviPuntiVitaEroe >=0 && nuoviPuntiVitaMostro < nuoviPuntiVitaEroe)
-                    {
-                        Console.WriteLine("HAI VINTO!!");
-                        return nuoviPuntiVitaEroe;
-                    }
-                    break;
-                    
-                case "2":
-                    return 10;
+                            Console.WriteLine("HAI PERSO!!");
+                        }
+                        else if (nuoviPuntiVitaEroe >= 0 && nuoviPuntiVitaMostro < nuoviPuntiVitaEroe)
+                        {
+                            Console.WriteLine("HAI VINTO!!");
+                            return nuoviPuntiVitaEroe;
+                        }
+                        break;
 
-            }
+                    case "2":
+                        return 10;
 
-            return 10;
+                }
+
+            return 0;
+           
         }
 
         public static int CalcoloPunteggio(Eroe eroeScelto,Mostro mostroScelto)
@@ -76,15 +81,17 @@ namespace MostriVSEroi.Services
 
         }
 
-        private static int ConteggioPuntiEroe(int puntiVitaEroe, Mostro mostroScelto)
+        private static int ConteggioPuntiEroe(Eroe eroe, Mostro mostroScelto)
         {
-            int nuoviPuntiVitaEroe = puntiVitaEroe - mostroScelto.Arma.PuntiDanno;
+            int nuoviPuntiVitaEroe = eroe.PuntiVita - mostroScelto.Arma.PuntiDanno;
+            Console.WriteLine($"-{nuoviPuntiVitaEroe} Punti vita per {eroe.NomeEroe}");
             return nuoviPuntiVitaEroe;
         }
 
         private static int ConteggioPuntiMostro(Eroe eroeScelto, Mostro mostroScelto)
         {
             int nuoviPuntivitaMostro = mostroScelto.PuntiVita - eroeScelto.Arma.PuntiDanno;
+            Console.WriteLine($"-{nuoviPuntivitaMostro} Punti vita per {mostroScelto.NomeMostro}");
             return nuoviPuntivitaMostro;
         }
     }

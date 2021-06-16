@@ -14,9 +14,9 @@ namespace MostriVSEroi.Modelli
         public int Livello { get; set; } = 1;
         public int PuntiVita { get; set; } = 20;
 
-        public Eroe(string nome,string categoria,ArmaEroe arma)
+        public Eroe(int ideroe,string nome,string categoria,ArmaEroe arma)
         {
-            
+            idEroe = ideroe;
             NomeEroe = nome;
             Categoria = categoria;
             Arma = arma;

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVSEroi.Modelli", "Mos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVSEroi.Services", "MostriVSEroi.Services\MostriVSEroi.Services.csproj", "{FDAC4288-7F8A-4871-A894-0545F069B710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVSEroi.mokRepository", "MostriVSEroi.mokRepository\MostriVSEroi.mokRepository.csproj", "{238E35E7-39EB-4D81-B1D0-22F15EF420E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostriVSEroi.DbRepository", "MostriVSEroi.mokRepository\MostriVSEroi.DbRepository.csproj", "{238E35E7-39EB-4D81-B1D0-22F15EF420E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

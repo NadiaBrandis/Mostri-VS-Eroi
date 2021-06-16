@@ -11,19 +11,24 @@ namespace MostriVSEroi.view
         internal static void Gioca(Utente utente)
         {
             //stampa tutti gli eroi
-            List<Eroe> eroi = RichiestaDati.ListaEroi();
-            List<Mostro> mostri = RichiestaDati.ListaMostri();
-            EroeServices.GetEroi(eroi);
+            List<Eroe> eroi = EroeServices.GetEroi();
+            List<Mostro> mostri = MostroServices.GetMostri();
+            
             //scelta eroe
             int id=RichiestaDati.SceltaEroe();
             Eroe eroeScelto=EroeServices.GetEroe(id,eroi);
+            eroeScelto.PuntiVita=utente.PuntiVita;
+            
             //scelta mostro
             Mostro mostroScelto = MostroServices.GetMostro(mostri);
+            Console.WriteLine($"{eroeScelto.NomeEroe} VS {mostroScelto.NomeMostro}");
+           
             //partita
             int punteggio=PartitaServices.GiocaPartita(eroeScelto, mostroScelto);
-            //calcolo punteggio e livello
-           eroeScelto.Livello=PartitaServices.CalcoloPunteggio(eroeScelto,mostroScelto);
-            //giocare ancora
+           //// //calcolo punteggio e livello
+           //eroeScelto.Livello=PartitaServices.CalcoloPunteggio(eroeScelto,mostroScelto);
+           // Console.WriteLine(PartitaServices.CalcoloPunteggio(eroeScelto, mostroScelto));
+           //// //giocare ancora
             GiocaVieW.Gioca(utente);
         }
     }

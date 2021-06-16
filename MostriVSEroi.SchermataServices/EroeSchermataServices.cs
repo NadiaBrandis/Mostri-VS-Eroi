@@ -7,10 +7,10 @@ namespace MostriVSEroi.SchermataServices
 {
     public class EroeSchermataServices
     {
-        public static Eroe GetEroe(string nome, string categoria,string arma,int puntiDanno)
+        public static Eroe GetEroe(int Id,string nome, string categoria, string arma, int puntiDanno)
         {
             ArmaEroe armaE = new ArmaEroe(arma, puntiDanno);
-            return new Eroe(nome, categoria,armaE);
+            return new Eroe(Id,nome, categoria, armaE);
         }
     }
 }
