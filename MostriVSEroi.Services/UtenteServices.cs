@@ -13,6 +13,7 @@ namespace MostriVSEroi.Services
         public static List<Utente> Utenti()
         {
             List<Utente> utenti = UtenteDbRepository.GetUtenti();
+            
             return utenti;
         }
 

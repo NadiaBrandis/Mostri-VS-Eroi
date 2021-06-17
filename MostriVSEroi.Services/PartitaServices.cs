@@ -7,40 +7,46 @@ namespace MostriVSEroi.Services
 {
     public class PartitaServices
     {
-        public static int GiocaPartita(Eroe eroeScelto, Mostro mostroScelto)
+        public static int GiocaPartita(Utente utente,Eroe eroeScelto, Mostro mostroScelto)
         {
             //i punti vita del eroe in realtà sono quelli del utente
-            int nuoviPuntiVitaMostro;
-            int nuoviPuntiVitaEroe;
-            string scelta;
-            int puntiTotali;
-          
-                Console.WriteLine("Vuoi Attaccare o Fuggire?");
-                Console.WriteLine("1. Attacco");
-                Console.WriteLine("2. Fuga");
-               scelta = Console.ReadLine();
+            
+            
+           
+            Console.WriteLine($"PUNTI VITA EROE: {eroeScelto.PuntiVita}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
+            Console.WriteLine($"PUNTI VITA MOSTRO: {mostroScelto.PuntiVita}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
 
-                switch (scelta)
+            Console.WriteLine("Premi 1 per Attaccare!!");
+            string scelta1 = Console.ReadLine();
+                switch (scelta1)
                 {
                     case "1":
-                        do
-                        {
-                            nuoviPuntiVitaMostro = ConteggioPuntiMostro(eroeScelto, mostroScelto);//mostro-eroe
-                            nuoviPuntiVitaEroe = ConteggioPuntiEroe(eroeScelto, mostroScelto);//eroe-mostro
-                        puntiTotali = nuoviPuntiVitaEroe - nuoviPuntiVitaMostro;
-                        Console.WriteLine(puntiTotali);
-                        } while (puntiTotali > 0);
-                        if (nuoviPuntiVitaEroe <= 0 && nuoviPuntiVitaMostro > nuoviPuntiVitaEroe)
-                        {
 
-                            Console.WriteLine("HAI PERSO!!");
-                        }
-                        else if (nuoviPuntiVitaEroe >= 0 && nuoviPuntiVitaMostro < nuoviPuntiVitaEroe)
-                        {
-                            Console.WriteLine("HAI VINTO!!");
-                            return nuoviPuntiVitaEroe;
-                        }
-                        break;
+                    string scelta;
+                    do
+                    {
+                        Console.WriteLine("1. Attacco");
+                        Console.WriteLine("2. Fuga");
+                        
+                            scelta = Console.ReadLine();
+                     
+                        int nuoviPuntivitaMostro;
+                        int nuoviPuntivitaEroe;
+                        
+                            Console.WriteLine($"----1 Round----");
+                            nuoviPuntivitaMostro = mostroScelto.PuntiVita - eroeScelto.Arma.PuntiDanno;
+                            Console.WriteLine($"PUNTI VITA EROE: {eroeScelto.PuntiVita}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
+                            Console.WriteLine($"PUNTI VITA MOSTRO: {nuoviPuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
+                           
+                            Console.WriteLine($"----2 Round----");
+                            nuoviPuntivitaEroe = eroeScelto.PuntiVita - mostroScelto.Arma.PuntiDanno;
+                            Console.WriteLine($"PUNTI VITA EROE: {nuoviPuntivitaEroe}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
+                            Console.WriteLine($"PUNTI VITA MOSTRO: {nuoviPuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
+                            
+                        
+                    } while (scelta!="2"); ;
+                    
+                    break;
 
                     case "2":
                         return 10;
@@ -49,6 +55,23 @@ namespace MostriVSEroi.Services
 
             return 0;
            
+        }
+
+        private static int CalcolaPuntiVitaEroe(int nuoviPuntivitaEroe, Eroe eroeScelto, int PuntivitaMostro, Mostro mostroScelto)
+        {
+           int  PuntivitaEroe = nuoviPuntivitaEroe - mostroScelto.Arma.PuntiDanno;
+            Console.WriteLine($"PUNTI VITA EROE: {nuoviPuntivitaEroe}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
+            Console.WriteLine($"PUNTI VITA MOSTRO: {PuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
+            
+            return CalcolaPuntiVitaEroe(nuoviPuntivitaEroe, eroeScelto, PuntivitaMostro, mostroScelto);
+        }
+
+        private static int CalcoloPuntiVitaMostro(int puntiVitaMostro,Eroe eroeScelto,int nuoviPuntivitaEroe,Mostro mostroScelto)
+        {
+            int nuoviPuntivitaMostro= puntiVitaMostro - eroeScelto.Arma.PuntiDanno;
+            Console.WriteLine($"PUNTI VITA EROE: {nuoviPuntivitaEroe}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
+            Console.WriteLine($"PUNTI VITA MOSTRO: {nuoviPuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
+            return CalcoloPuntiVitaMostro(nuoviPuntivitaMostro, eroeScelto, nuoviPuntivitaEroe, mostroScelto);
         }
 
         public static int CalcoloPunteggio(Eroe eroeScelto,Mostro mostroScelto)

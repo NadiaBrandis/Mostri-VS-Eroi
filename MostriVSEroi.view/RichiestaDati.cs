@@ -38,7 +38,9 @@ namespace MostriVSEroi.view
                     string categoria = item.Categoria;
                     string arma = item.Arma.NomeArma;
                     int puntiDanno = item.Arma.PuntiDanno;
-                    return EroeSchermataServices.GetEroe(id, nomeEroe, categoria, arma, puntiDanno);
+                    int livello = item.Livello;
+                    int puntiVita = item.PuntiVita;
+                    return EroeSchermataServices.GetEroe(id, nomeEroe, categoria, arma, puntiDanno,livello,puntiVita);
                 }
                 
             }
@@ -92,8 +94,9 @@ namespace MostriVSEroi.view
             ArmaEroe arma = new ArmaEroe();
             int puntiDanno = arma.PuntiDanno;
             nomeArma = arma.NomeArma;
-
-            return EroeSchermataServices.GetEroe(id,nome, categoria, nomeArma,puntiDanno);
+            int livello = 1;
+            int puntiVita = 20;
+            return EroeSchermataServices.GetEroe(id,nome, categoria, nomeArma,puntiDanno,livello,puntiVita);
 
         }
 

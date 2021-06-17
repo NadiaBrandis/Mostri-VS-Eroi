@@ -39,12 +39,14 @@ namespace MostriVSEroi.mokRepository
                 var arma = reader[2];
                 var puntiDanno =Int32.Parse((string)reader[3]);
                 int idEroe = (int)reader[4];
+                int livello = (int)reader[5];
+                int puntiVita = (int)reader[6];
                 
                
 
                 ArmaEroe armaE = new ArmaEroe(arma.ToString(),(int)puntiDanno);
 
-                Eroe eroe = new Eroe((int)idEroe,(string)nome, (string)categoria, armaE);
+                Eroe eroe = new Eroe((int)idEroe,(string)nome, (string)categoria, armaE,livello,puntiVita);
                 eroi.Add(eroe);
             }
             connection.Close();

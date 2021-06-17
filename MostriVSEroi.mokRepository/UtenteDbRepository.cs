@@ -33,10 +33,12 @@ namespace MostriVSEroi.mokRepository
                 var username = reader[1];
                 var password = reader[2];
                 var livello = (int)reader[3];
-                var punti =(int) reader[4];
+                var punti = (int)reader[4];
 
 
                 Utente utente = new Utente(id,(string)username, (string)password,livello,punti);
+                Console.WriteLine($"{punti}");
+                Console.WriteLine($"{username}-{livello} ");
                 utenti.Add(utente);
 
             }
