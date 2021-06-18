@@ -21,14 +21,7 @@ namespace MostriVSEroi.Services
             }
             return mostri;
         }
-        //public static void StampaMostri()
-        //{
-        //    List<Mostro> mostri = MostriMockRepository.GetMostri();
-        //    foreach (var item in mostri)
-        //    {
-        //        Console.WriteLine(item.CategoriaMostro);
-        //    }
-        //}
+      
 
         public static Mostro GetMostro(List<Mostro> mostri)
         {
@@ -51,38 +44,15 @@ namespace MostriVSEroi.Services
             return mostro ;
            
         }
-        //public static Mostro GetMostro(List<Mostro> mostri)
-        //{
-        //    string nomeMostro=GetNomeMostro(mostri);
-        //    Mostro mostro;
-           
-        //    CercaMostroPerNome(nomeMostro, mostri,out mostro);
-        //    //foreach (var item in mostri)
-        //    //{
-        //    //    if (nomeMostro == item.NomeMostro)
 
-        //    //        mostro.NomeMostro = item.NomeMostro;
-        //    //         mostro.Arma.NomeArma = item.Arma.NomeArma;
-        //    //         mostro.Arma.PuntiDanno = item.Arma.PuntiDanno;
+        internal static void MostroAttaccaEroe(Eroe eroeScelto, Mostro mostroScelto)
+        {
+            eroeScelto.PuntiVita = eroeScelto.PuntiVita - mostroScelto.Arma.PuntiDanno;
 
-        //    //}
-        //    return mostro;
-            
-        //}
+            Console.WriteLine($"PUNTI VITA EROE: {eroeScelto.PuntiVita}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
+            Console.WriteLine($"PUNTI VITA MOSTRO: {mostroScelto.PuntiVita}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
 
-        //private static void CercaMostroPerNome(string nomeMostro, List<Mostro> mostri,out Mostro mostro)
-        //{
-        //    mostro = new Mostro();
-        //    foreach (var item in mostri)
-        //    {
-        //        if (nomeMostro == item.NomeMostro)
-        //        {
-        //            mostro.NomeMostro = item.NomeMostro;
-        //            mostro.Arma.NomeArma = item.Arma.NomeArma;
-        //            mostro.Arma.PuntiDanno = item.Arma.PuntiDanno;
-                    
-        //        }
-        //    }
-        //}
+        }
+
     }
 }

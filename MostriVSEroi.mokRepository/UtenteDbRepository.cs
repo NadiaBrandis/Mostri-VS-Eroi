@@ -37,8 +37,7 @@ namespace MostriVSEroi.mokRepository
 
 
                 Utente utente = new Utente(id,(string)username, (string)password,livello,punti);
-                Console.WriteLine($"{punti}");
-                Console.WriteLine($"{username}-{livello} ");
+                
                 utenti.Add(utente);
 
             }
@@ -59,10 +58,37 @@ namespace MostriVSEroi.mokRepository
                 command.CommandText = "insert into dbo.Utenti values (@Username,@Password) ";
                 command.Parameters.AddWithValue("@Username", username);
                 command.Parameters.AddWithValue("@Password", password);
+                
                 command.ExecuteNonQuery();
                 connection.Close();
             }
         }
+        //public static int AssociaLivelloAUtente(string username,string password)
+        //{
+        //    int id;
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        SqlCommand command = new SqlCommand();
+
+        //        command.Connection = connection;
+
+        //        command.CommandType = System.Data.CommandType.Text;
+        //        command.CommandText = "select IdUtente from dbo.Utenti where Username=@Username and Password=@Password) ";
+        //        command.Parameters.AddWithValue("@Username", username);
+        //        command.Parameters.AddWithValue("@Password", password);
+        //        SqlDataReader reader = command.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            int id = (int)reader[0];
+        //        }
+                
+        //            command.ExecuteNonQuery();
+        //        connection.Close();
+        //    }
+        //    return id;
+        //}
+
     } 
 
     }

@@ -25,12 +25,9 @@ namespace MostriVSEroi.view
             Console.WriteLine($"{eroeScelto.NomeEroe} VS {mostroScelto.NomeMostro}");
            
             //partita
-            int punteggio=PartitaServices.GiocaPartita(utente,eroeScelto, mostroScelto);
-           //// //calcolo punteggio e livello
-           //eroeScelto.Livello=PartitaServices.CalcoloPunteggio(eroeScelto,mostroScelto);
-           // Console.WriteLine(PartitaServices.CalcoloPunteggio(eroeScelto, mostroScelto));
-           //// //giocare ancora
-            //GiocaVieW.Gioca(utente);
+            PartitaServices.GiocaPartita(utente,eroeScelto, mostroScelto);
+            
+           
         }
     }
 }

@@ -19,20 +19,20 @@ namespace MostriVSEroi.Services
                 Console.WriteLine($"[{item.idEroe}]-Nome Eroe:{item.NomeEroe} -Categoria:{item.Categoria}" +
                     $"-Arma:{item.Arma.NomeArma} -Punti Danno: {item.Arma.PuntiDanno}");
                 count++;
-                
+
             }
             return eroi;
         }
 
-        public static Eroe GetEroe(int id ,List<Eroe>eroi)
+        public static Eroe GetEroe(int id, List<Eroe> eroi)
         {
             Eroe eroe = new Eroe();
             foreach (var item in eroi)
             {
                 if (item.idEroe == id)
                 {
-                   
-                    return item;  
+
+                    return item;
                 }
 
             }
@@ -40,9 +40,14 @@ namespace MostriVSEroi.Services
 
         }
 
-        public static void GetPuntiVitaEroe(Utente utente, List<Eroe> eroi)
+        
+        public static void EroeAttaccaMostro(Eroe eroe, Mostro mostro)
         {
-            throw new NotImplementedException();
+            mostro.PuntiVita = mostro.PuntiVita - eroe.Arma.PuntiDanno;
+
+            Console.WriteLine($"PUNTI VITA EROE: {eroe.PuntiVita}----ARMA EROE: {eroe.Arma.NomeArma}={eroe.Arma.PuntiDanno}");
+            Console.WriteLine($"PUNTI VITA MOSTRO: {mostro.PuntiVita}-----ARMA MOSTRO:{mostro.Arma.NomeArma}={mostro.Arma.PuntiDanno}");
+
         }
     }
 }

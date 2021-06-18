@@ -7,7 +7,7 @@ namespace MostriVSEroi.Services
 {
     public class PartitaServices
     {
-        public static int GiocaPartita(Utente utente,Eroe eroeScelto, Mostro mostroScelto)
+        public static void GiocaPartita(Utente utente,Eroe eroeScelto, Mostro mostroScelto)
         {
             //i punti vita del eroe in realtà sono quelli del utente
             
@@ -15,92 +15,96 @@ namespace MostriVSEroi.Services
            
             Console.WriteLine($"PUNTI VITA EROE: {eroeScelto.PuntiVita}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
             Console.WriteLine($"PUNTI VITA MOSTRO: {mostroScelto.PuntiVita}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
+          
 
-            Console.WriteLine("Premi 1 per Attaccare!!");
-            string scelta1 = Console.ReadLine();
+            Console.WriteLine("");
+            string scelta1;
+             Console.WriteLine("1. Attacco");
+                Console.WriteLine("2. Fuga");
+                
+              
+                scelta1 = Console.ReadLine();
+           
                 switch (scelta1)
                 {
                     case "1":
 
-                    string scelta;
+                   
                     do
                     {
-                        Console.WriteLine("1. Attacco");
-                        Console.WriteLine("2. Fuga");
+                       
+
+                        int i = 1;
+                        Console.WriteLine($"----{i} Round----");
+                        EroeServices.EroeAttaccaMostro(eroeScelto, mostroScelto);
+                        if (mostroScelto.PuntiVita > 0)
+                        {
+                         Console.WriteLine($"----{i} Round----");
+                         MostroServices.MostroAttaccaEroe(eroeScelto, mostroScelto);
+                        }
+                        i++;   
                         
-                            scelta = Console.ReadLine();
-                     
-                        int nuoviPuntivitaMostro;
-                        int nuoviPuntivitaEroe;
+                    } while (eroeScelto.PuntiVita >0 && mostroScelto.PuntiVita > 0 ); 
+                    if(eroeScelto.PuntiVita > mostroScelto.PuntiVita)
+                    {
+                        Console.WriteLine("HAI VINTO!!");
+                        CalcoloPunteggio(eroeScelto, mostroScelto);
+                        int punteggio = eroeScelto.Arma.PuntiDanno * mostroScelto.Livello;
+                        Console.WriteLine($"HAI TOTALIZZATO {punteggio} PUNTI");
                         
-                            Console.WriteLine($"----1 Round----");
-                            nuoviPuntivitaMostro = mostroScelto.PuntiVita - eroeScelto.Arma.PuntiDanno;
-                            Console.WriteLine($"PUNTI VITA EROE: {eroeScelto.PuntiVita}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
-                            Console.WriteLine($"PUNTI VITA MOSTRO: {nuoviPuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
-                           
-                            Console.WriteLine($"----2 Round----");
-                            nuoviPuntivitaEroe = eroeScelto.PuntiVita - mostroScelto.Arma.PuntiDanno;
-                            Console.WriteLine($"PUNTI VITA EROE: {nuoviPuntivitaEroe}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
-                            Console.WriteLine($"PUNTI VITA MOSTRO: {nuoviPuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
-                            
-                        
-                    } while (scelta!="2"); ;
+                    }
+                    else
+                    {
+                        Console.WriteLine("HAI PERSO!!");
+                    }
                     
                     break;
 
                     case "2":
-                        return 10;
 
+                    break;
                 }
 
-            return 0;
+           
            
         }
 
-        private static int CalcolaPuntiVitaEroe(int nuoviPuntivitaEroe, Eroe eroeScelto, int PuntivitaMostro, Mostro mostroScelto)
-        {
-           int  PuntivitaEroe = nuoviPuntivitaEroe - mostroScelto.Arma.PuntiDanno;
-            Console.WriteLine($"PUNTI VITA EROE: {nuoviPuntivitaEroe}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
-            Console.WriteLine($"PUNTI VITA MOSTRO: {PuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
-            
-            return CalcolaPuntiVitaEroe(nuoviPuntivitaEroe, eroeScelto, PuntivitaMostro, mostroScelto);
-        }
+      
 
-        private static int CalcoloPuntiVitaMostro(int puntiVitaMostro,Eroe eroeScelto,int nuoviPuntivitaEroe,Mostro mostroScelto)
-        {
-            int nuoviPuntivitaMostro= puntiVitaMostro - eroeScelto.Arma.PuntiDanno;
-            Console.WriteLine($"PUNTI VITA EROE: {nuoviPuntivitaEroe}----ARMA EROE: {eroeScelto.Arma.NomeArma}={eroeScelto.Arma.PuntiDanno}");
-            Console.WriteLine($"PUNTI VITA MOSTRO: {nuoviPuntivitaMostro}-----ARMA MOSTRO:{mostroScelto.Arma.NomeArma}={mostroScelto.Arma.PuntiDanno}");
-            return CalcoloPuntiVitaMostro(nuoviPuntivitaMostro, eroeScelto, nuoviPuntivitaEroe, mostroScelto);
-        }
+      
 
-        public static int CalcoloPunteggio(Eroe eroeScelto,Mostro mostroScelto)
+        public static void CalcoloPunteggio(Eroe eroeScelto,Mostro mostroScelto)
         {
            int livelloEroe = eroeScelto.Livello;
            int LivelloMostro = mostroScelto.Livello;
-           int punteggioAccumulato = eroeScelto.Arma.PuntiDanno * LivelloMostro;
+           int punteggioAccumulato = eroeScelto.Arma.PuntiDanno * mostroScelto.Livello;
            if(punteggioAccumulato >0 && punteggioAccumulato <= 29)
             {
                 livelloEroe = 1;
-                
+                Console.WriteLine($"NUOVO LIVELLO EROE :{livelloEroe}");
             }
            else if(punteggioAccumulato > 30 && punteggioAccumulato <= 59)
             {
                 livelloEroe = 2;
+                Console.WriteLine($"NUOVO LIVELLO EROE :{livelloEroe}");
             }
             else if (punteggioAccumulato > 60 && punteggioAccumulato <= 89)
             {
                 livelloEroe = 3;
+                Console.WriteLine($"NUOVO LIVELLO EROE :{livelloEroe}");
             }
             else if (punteggioAccumulato > 90 && punteggioAccumulato <= 119)
             {
                 livelloEroe = 4;
+                Console.WriteLine($"NUOVO LIVELLO EROE :{livelloEroe}");
             }
             else
             {
-                livelloEroe = 4;
+                livelloEroe = 5;
+                Console.WriteLine($"NUOVO LIVELLO EROE :{livelloEroe}");
             }
-            return livelloEroe;
+           
+            
 
         }
 

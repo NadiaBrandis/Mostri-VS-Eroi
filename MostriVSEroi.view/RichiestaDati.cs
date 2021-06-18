@@ -70,11 +70,10 @@ namespace MostriVSEroi.view
             
             return eroi;
         }
-        internal static Eroe InserisciDatiEroe(List<Eroe> eroi)
+        internal static Eroe InserisciDatiEroe(List<ArmaEroe> armi, List<Eroe> eroi)
         {
-            Eroe eroeDaCreare = new Eroe();
-            Console.WriteLine("id Eroe");
-            int id = int.Parse(Console.ReadLine());
+
+            
             Console.Write("Nome del Eroe: ");
             string nome = Console.ReadLine();
             foreach (var item in eroi)
@@ -83,21 +82,27 @@ namespace MostriVSEroi.view
             }
             Console.Write("Categoria Eroe tra quelle proposte: ");
             string categoria = Console.ReadLine();
-            foreach (var item in eroi)
+            foreach (var item in armi)
             {
-                if(item.Categoria== categoria)
-                Console.WriteLine(item.Arma.NomeArma);
+                        Console.WriteLine(item.NomeArma);
+                
             }
             Console.Write("Selezione l'arma del tuo eroe tra quelle proposte: ");
+
 
             string nomeArma = Console.ReadLine();
             ArmaEroe arma = new ArmaEroe();
             int puntiDanno = arma.PuntiDanno;
             nomeArma = arma.NomeArma;
-            int livello = 1;
-            int puntiVita = 20;
-            return EroeSchermataServices.GetEroe(id,nome, categoria, nomeArma,puntiDanno,livello,puntiVita);
+            Console.WriteLine("Inserisci il livello:");
+            int livello = int.Parse(Console.ReadLine());
+            Console.WriteLine("insersci i punti vita:");
+            int puntiVita = int.Parse(Console.ReadLine());
+            int idEroe = eroi.Count + 1;
 
+            Eroe eroeDaCreare = new Eroe(idEroe, nome, categoria, arma, livello, puntiVita);
+
+            return eroeDaCreare;
         }
 
     }
